@@ -1,0 +1,30 @@
+import type { ListingFormValues } from "./validation";
+
+/** Kept outside the "use client" form module so Server Components can import the real object. */
+export const EMPTY_LISTING: ListingFormValues = {
+  title: "",
+  description: "",
+  propertyType: "FLAT",
+  rentPerMonth: "",
+  securityDeposit: "",
+  bedrooms: "",
+  bathrooms: "",
+  areaSize: "",
+  areaUnit: "",
+  floor: "",
+  furnished: false,
+  features: [],
+  availableFrom: "",
+  preferredTenant: "ANY",
+  city: "",
+  area: "",
+  fullAddress: "",
+  streetNo: "",
+  houseNo: "",
+  ownerPhone: "",
+  ownerWhatsapp: "",
+  ownerEmail: "",
+  latitude: "",
+  longitude: "",
+  media: [],
+};

@@ -1,0 +1,214 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+}
+
+enum PropertyType {
+  FLAT
+  HOUSE
+  PORTION
+  ROOM
+  SHOP
+  OFFICE
+  WAREHOUSE
+  PLOT
+  OTHER
+}
+
+enum ListingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  RENTED
+  INACTIVE
+}
+
+enum AreaUnit {
+  MARLA
+  KANAL
+  SQFT
+}
+
+enum PreferredTenant {
+  FAMILY
+  BACHELOR
+  ANY
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum DealStatus {
+  IN_PROGRESS
+  COMMISSION_PENDING
+  COMMISSION_RECEIVED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  phone        String   @unique
+  whatsapp     String?
+  passwordHash String
+  role         Role     @default(OWNER)
+  createdAt    DateTime @default(now())
+
+  listings    Listing[]
+  resetTokens PasswordResetToken[]
+
+  @@index([role])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+/// PUBLIC listing data. Everything the owner must NOT be bypassed with lives in ListingPrivate.
+model Listing {
+  id       String @id @default(cuid())
+  seq      Int    @unique @default(autoincrement())
+  publicId String @unique // e.g. RH-10245
+  slug     String @unique
+
+  title        String
+  description  String
+  propertyType PropertyType
+
+  rentPerMonth    Int
+  securityDeposit Int?
+  bedrooms        Int?
+  bathrooms       Int?
+  areaSize        Float?
+  areaUnit        AreaUnit?
+  floor           String?
+  furnished       Boolean         @default(false)
+  features        String[]
+  availableFrom   DateTime?
+  preferredTenant PreferredTenant @default(ANY)
+
+  city     String
+  citySlug String
+  area     String
+  areaSlug String
+
+  status          ListingStatus @default(PENDING)
+  featured        Boolean       @default(false)
+  adminNotes      String?
+  rejectionReason String?
+
+  ownerId    String
+  owner      User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  approvedAt DateTime?
+
+  private   ListingPrivate?
+  media     Media[]
+  inquiries Inquiry[]
+  deals     Deal[]
+
+  @@index([status, citySlug, areaSlug])
+  @@index([status, propertyType])
+  @@index([status, rentPerMonth])
+  @@index([status, createdAt])
+  @@index([ownerId])
+}
+
+/// PRIVATE data: never selected by public queries, never serialised to public routes.
+model ListingPrivate {
+  listingId     String  @id
+  fullAddress   String
+  streetNo      String?
+  houseNo       String?
+  ownerPhone    String
+  ownerWhatsapp String?
+  ownerEmail    String?
+  latitude      Float?
+  longitude     Float?
+  listing       Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+model Media {
+  id        String    @id @default(cuid())
+  listingId String
+  url       String
+  type      MediaType
+  order     Int       @default(0)
+  listing   Listing   @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId, order])
+}
+
+model Inquiry {
+  id        String   @id @default(cuid())
+  listingId String
+  source    String
+  createdAt DateTime @default(now())
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@index([createdAt])
+}
+
+model Deal {
+  id               String     @id @default(cuid())
+  listingId        String
+  tenantName       String
+  tenantPhone      String
+  commissionAmount Int
+  status           DealStatus @default(IN_PROGRESS)
+  notes            String?
+  createdAt        DateTime   @default(now())
+  listing          Listing    @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@index([createdAt])
+}
+
+/// Blog posts written by the admin (Markdown body).
+model Post {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  excerpt         String
+  content         String
+  coverImage      String?
+  category        String    @default("Guides")
+  authorName      String    @default("RentHub Team")
+  published       Boolean   @default(false)
+  publishedAt     DateTime?
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([published, publishedAt])
+}
+
+/// Small key/value store for admin-editable settings (robots.txt extras, etc.).
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
