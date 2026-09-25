@@ -10,7 +10,7 @@ export default async function NewPostPage() {
       <h1 className="text-2xl font-bold">New article</h1>
       <PostForm
         id={null}
-        defaults={{ title: "", slug: "", excerpt: "", content: "", category: "Guides", authorName: "RentHub Team", coverImage: "", metaTitle: "", metaDescription: "", published: false }}
+        defaults={{ title: "", slug: "", excerpt: "", content: "", category: "Guides", authorName: "Pakistan Rents Team", coverImage: "", metaTitle: "", metaDescription: "", published: false }}
       />
     </div>
   );

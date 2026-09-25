@@ -1,4 +1,4 @@
-# RentHub Pakistan — rental listing marketplace
+# Pakistan Rents: rental listing marketplace
 
 A production-ready rental marketplace for Pakistan built with **Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Prisma + PostgreSQL · Auth.js v5 · Zod · React Hook Form · Cloudinary**.
 

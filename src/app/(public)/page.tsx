@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BadgeCheck, Lock, MessageCircle, Search, Handshake, Wallet } from "lucide-react";
 import { T } from "@/components/i18n/lang-provider";
 import { SearchForm } from "@/components/layout/search-hero";
+import { HeroSlider, type HeroSlide } from "@/components/layout/hero-slider";
 import { BlogCard } from "@/components/blog/blog-card";
 import { Reveal } from "@/components/ui/reveal";
 import { getPublishedPosts } from "@/lib/blog";
@@ -29,6 +30,15 @@ export const metadata = {
 
 const HOW_ICONS = [Search, MessageCircle, Handshake];
 
+/** Put your 5 hero images at public/hero/1.jpg .. 5.jpg (see the "Hero slider images" guide). */
+const HERO_SLIDES: HeroSlide[] = [
+  { src: "/hero/1.jpg", alt: "Modern living room in a rental flat" },
+  { src: "/hero/2.jpg", alt: "Bright bedroom in a rented apartment" },
+  { src: "/hero/3.jpg", alt: "House exterior with a lawn" },
+  { src: "/hero/4.jpg", alt: "Contemporary kitchen in a rental home" },
+  { src: "/hero/5.jpg", alt: "City skyline view from an apartment" },
+];
+
 export default async function HomePage() {
   const [featured, latest, areas, stats, posts] = await Promise.all([
     getFeaturedListings(4),
@@ -42,15 +52,14 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary-soft/60 to-background">
-        <div aria-hidden="true" className="animate-float pointer-events-none absolute -left-20 -top-24 size-72 rounded-full bg-primary/15 blur-3xl" />
-        <div aria-hidden="true" className="animate-float pointer-events-none absolute -right-16 top-24 size-80 rounded-full bg-accent/15 blur-3xl [animation-delay:-4s]" />
-        <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-10 sm:px-6 sm:pt-16">
+      <section className="relative overflow-hidden border-b border-border">
+        <HeroSlider slides={HERO_SLIDES} className="absolute inset-0" />
+        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-4 py-10 sm:min-h-[600px] sm:px-6 sm:py-16">
           <div className="animate-fade-up mx-auto max-w-3xl text-center">
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-sm sm:text-5xl">
               <T k="hero.title" />
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-white/90 drop-shadow-sm sm:text-lg">
               <T k="hero.subtitle" />
             </p>
           </div>
@@ -67,8 +76,8 @@ export default async function HomePage() {
             ))}
           </ul>
           {stats.listings > 0 && (
-            <p className="mt-5 text-center text-sm text-muted-foreground">
-              <strong className="text-foreground">{stats.listings}+</strong> live rentals in <strong className="text-foreground">{stats.cities}</strong> {stats.cities === 1 ? "city" : "cities"}
+            <p className="mt-5 text-center text-sm text-white/90 drop-shadow-sm">
+              <strong className="text-white">{stats.listings}+</strong> live rentals in <strong className="text-white">{stats.cities}</strong> {stats.cities === 1 ? "city" : "cities"}
             </p>
           )}
         </div>

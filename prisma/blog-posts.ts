@@ -62,7 +62,7 @@ Never rely on a verbal promise. Ask for a written rental agreement that clearly 
 
 Whenever you pay rent or deposit, ask for a receipt or send the money through a bank transfer. This protects both you and the owner if there is a disagreement later.
 
-If you want help, browse our reviewed listings on RentHub and send us the Listing ID on WhatsApp. We will arrange the viewing and connect you with the owner directly.`,
+If you want help, browse our reviewed listings on Pakistan Rents and send us the Listing ID on WhatsApp. We will arrange the viewing and connect you with the owner directly.`,
   },
   {
     slug: "rental-agreement-in-pakistan-what-to-check-before-signing",
@@ -167,7 +167,7 @@ Owners should be fair and clear. Inspect the property together with the tenant w
 
 ## A tip for both sides
 
-Do everything in writing and use bank transfers where possible. It removes confusion and keeps the relationship friendly. If you need guidance while renting through RentHub, message us on WhatsApp with your Listing ID and we will explain the process.`,
+Do everything in writing and use bank transfers where possible. It removes confusion and keeps the relationship friendly. If you need guidance while renting through Pakistan Rents, message us on WhatsApp with your Listing ID and we will explain the process.`,
   },
   {
     slug: "best-areas-to-rent-a-house-in-lahore-for-families",
@@ -239,7 +239,7 @@ Mention the size, number of bedrooms and bathrooms, floor, available facilities 
 
 ## 5. Be quick to respond
 
-Tenants usually contact several owners at once. The person who replies first often gets the first viewing. On RentHub, enquiries come to our team, so we respond fast and arrange viewings for you.
+Tenants usually contact several owners at once. The person who replies first often gets the first viewing. On Pakistan Rents, enquiries come to our team, so we respond fast and arrange viewings for you.
 
 ## 6. Decide your conditions in advance
 
@@ -247,7 +247,7 @@ Know beforehand whether you prefer a family or bachelors, how much deposit you w
 
 ## 7. Choose a platform that protects your privacy
 
-On RentHub your phone number and exact address are never shown publicly. Tenants contact our team, and we connect you only when someone is genuinely interested. That means fewer random calls and a safer experience.
+On Pakistan Rents your phone number and exact address are never shown publicly. Tenants contact our team, and we connect you only when someone is genuinely interested. That means fewer random calls and a safer experience.
 
 ## Ready to list?
 

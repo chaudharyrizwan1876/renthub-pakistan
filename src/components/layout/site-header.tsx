@@ -7,13 +7,12 @@ import { MobileNav } from "./mobile-nav";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={className ?? "flex items-center gap-2 text-lg font-extrabold tracking-tight"} aria-label={`${SITE.shortName}.pk home`}>
+    <Link href="/" className={className ?? "flex items-center gap-2 text-lg font-extrabold tracking-tight"} aria-label={`${SITE.name} home`}>
       <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
         <Home className="size-[18px]" aria-hidden="true" />
       </span>
       <span>
-        {SITE.shortName}
-        <span className="text-primary">.pk</span>
+        Pakistan <span className="text-primary">Rents</span>
       </span>
     </Link>
   );

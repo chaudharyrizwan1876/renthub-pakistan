@@ -5,7 +5,7 @@ import path from "node:path";
 import { v2 as cloudinary } from "cloudinary";
 import { LIMITS } from "./constants";
 
-const FOLDER = "renthub/listings";
+const FOLDER = "pakistan-rents/listings";
 
 export type StorageMode = "cloudinary" | "local" | "none";
 

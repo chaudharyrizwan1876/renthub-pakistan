@@ -195,7 +195,7 @@ model Post {
   content         String
   coverImage      String?
   category        String    @default("Guides")
-  authorName      String    @default("RentHub Team")
+  authorName      String    @default("Pakistan Rents Team")
   published       Boolean   @default(false)
   publishedAt     DateTime?
   metaTitle       String?
