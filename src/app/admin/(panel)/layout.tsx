@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </form>
       }
       nav={[
-        { href: "/admin", label: "Overview", icon: <LayoutDashboard className={ic} aria-hidden="true" /> },
+        { href: "/admin", label: "Dashboard", icon: <LayoutDashboard className={ic} aria-hidden="true" /> },
         { href: "/admin/listings", label: "Listings", icon: <Building2 className={ic} aria-hidden="true" /> },
         { href: "/admin/owners", label: "Owners", icon: <Users className={ic} aria-hidden="true" /> },
         { href: "/admin/inquiries", label: "Inquiries", icon: <Inbox className={ic} aria-hidden="true" /> },

@@ -7,7 +7,7 @@ import { getOverview } from "@/lib/admin/queries";
 import { requireAdminPage } from "@/lib/authz";
 import { formatDate, formatPKR } from "@/lib/utils";
 
-export const metadata = { title: "Overview" };
+export const metadata = { title: "Dashboard" };
 
 function Stat({ label, value, href, tone }: { label: string; value: string | number; href?: string; tone?: string }) {
   const body = (
@@ -25,7 +25,7 @@ export default async function AdminOverview() {
   const s = o.byStatus;
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Overview</h1>
+      <h1 className="text-2xl font-bold">Dashboard</h1>
 
       <section aria-label="Key numbers" className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <Stat label="Total listings" value={o.total} href="/admin/listings" />

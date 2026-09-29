@@ -41,8 +41,8 @@ export function EmptyState({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-xl border border-dashed border-border bg-card px-6 py-12 text-center", className)}>
-      <div aria-hidden="true" className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-muted text-2xl">🏠</div>
+    <div className={cn("animate-fade-up rounded-xl border border-dashed border-border bg-card px-6 py-12 text-center", className)}>
+      <div aria-hidden="true" className="animate-float mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-muted text-2xl [animation-duration:5s]">🏠</div>
       <h2 className="text-lg font-semibold">{title}</h2>
       {children && <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{children}</p>}
       {action && <div className="mt-5 flex justify-center">{action}</div>}

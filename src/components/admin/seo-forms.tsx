@@ -71,8 +71,8 @@ export function RobotsForm({ initial }: { initial: { disallow: string; sitemaps:
           <span className="block text-sm text-muted-foreground">Only for a test or staging site. Turn this off for the live website, or Google will not list you.</span>
         </span>
       </label>
-      <Button type="submit" disabled={pending}>
-        {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Save robots.txt
+      <Button type="submit" loading={pending} loadingText="Saving...">
+        Save robots.txt
       </Button>
     </form>
   );

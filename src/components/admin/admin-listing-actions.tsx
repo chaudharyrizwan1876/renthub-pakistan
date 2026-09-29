@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Ban, Check, CheckCircle2, Loader2, Pencil, RotateCcw, Star, X } from "lucide-react";
+import { Ban, Check, CheckCircle2, Pencil, RotateCcw, Star, X } from "lucide-react";
 import { toast } from "sonner";
 import { approveListingAction, rejectListingAction, saveAdminNotesAction, setListingStatusAction, toggleFeaturedAction } from "@/actions/admin";
 import { deleteListingAction } from "@/actions/listings";
@@ -78,8 +78,8 @@ export function AdminListingActions({ id, publicId, status, featured }: { id: st
           {reasonError && <p role="alert" className="mt-1 text-xs font-medium text-danger">{reasonError}</p>}
           <div className="mt-4 flex justify-end gap-2">
             <DialogClose asChild><Button variant="outline">Cancel</Button></DialogClose>
-            <Button variant="destructive" disabled={pending} onClick={() => run(() => rejectListingAction(id, { reason }), `${publicId} rejected`, () => { setRejectOpen(false); setReason(""); })}>
-              {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Reject listing
+            <Button variant="destructive" loading={pending} loadingText="Rejecting..." onClick={() => run(() => rejectListingAction(id, { reason }), `${publicId} rejected`, () => { setRejectOpen(false); setReason(""); })}>
+              Reject listing
             </Button>
           </div>
         </DialogContent>
@@ -125,8 +125,8 @@ export function AdminNotesForm({ id, initial }: { id: string; initial: string })
     >
       <label htmlFor="admin-notes" className="sr-only">Admin notes</label>
       <Textarea id="admin-notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={5} maxLength={4000} placeholder="Private notes, visible to admins only" />
-      <Button type="submit" size="sm" disabled={pending || notes === initial}>
-        {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Save notes
+      <Button type="submit" size="sm" disabled={notes === initial} loading={pending} loadingText="Saving...">
+        Save notes
       </Button>
     </form>
   );

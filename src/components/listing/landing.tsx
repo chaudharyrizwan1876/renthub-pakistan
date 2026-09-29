@@ -94,10 +94,10 @@ export function LandingPage({
           <h2 id="landing-faq" className="text-xl font-semibold">Frequently asked questions</h2>
           <div className="mt-4 divide-y divide-border rounded-xl border border-border bg-card">
             {faqs.map((f) => (
-              <details key={f.q} className="group px-5 py-4">
+              <details key={f.q} className="accordion group px-5 py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium marker:hidden">
                   {f.q}
-                  <span aria-hidden="true" className="text-xl text-muted-foreground transition-transform group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="text-xl text-muted-foreground transition-transform duration-300 group-open:rotate-45 group-open:text-primary">+</span>
                 </summary>
                 <p className="mt-2 text-muted-foreground">{f.a}</p>
               </details>

@@ -56,7 +56,7 @@ export function Field({
       {children}
       {hint && !error && <p id={`${htmlFor}-hint`} className="mt-1.5 text-xs text-muted-foreground">{hint}</p>}
       {error && (
-        <p id={`${htmlFor}-error`} role="alert" className="mt-1.5 text-xs font-medium text-danger">
+        <p key={error} id={`${htmlFor}-error`} role="alert" className="animate-slide-down mt-1.5 text-xs font-medium text-danger">
           {error}
         </p>
       )}

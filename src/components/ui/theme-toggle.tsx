@@ -42,8 +42,8 @@ export function ThemeToggle({ className }: { className?: string }) {
       title={theme === "dark" ? "Light mode" : "Dark mode"}
       className={cn("inline-flex size-10 items-center justify-center rounded-lg text-foreground/80 transition-colors hover:bg-muted hover:text-foreground", className)}
     >
-      <Sun className="hidden size-5 dark:block" aria-hidden="true" />
-      <Moon className="size-5 dark:hidden" aria-hidden="true" />
+      <Sun key="sun" className="theme-icon hidden size-5 animate-pop-in dark:block" aria-hidden="true" />
+      <Moon key="moon" className="theme-icon size-5 animate-pop-in dark:hidden" aria-hidden="true" />
     </button>
   );
 }

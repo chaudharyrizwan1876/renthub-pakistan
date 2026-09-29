@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Controller, useForm, type FieldPath } from "react-hook-form";
-import { Check, ChevronLeft, ChevronRight, Loader2, Lock, Globe } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Lock, Globe } from "lucide-react";
 import { toast } from "sonner";
 import { createListingAction, updateListingAction } from "@/actions/listings";
 import { Button } from "@/components/ui/button";
@@ -152,13 +152,13 @@ export function ListingForm({
           })}
         </ol>
         <div className="mt-2 h-1.5 overflow-hidden rounded bg-muted" role="progressbar" aria-valuemin={1} aria-valuemax={STEPS.length} aria-valuenow={step + 1} aria-label={`Step ${step + 1} of ${STEPS.length}`}>
-          <div className="h-full bg-primary transition-all" style={{ width: `${((step + 1) / STEPS.length) * 100}%` }} />
+          <div className="h-full bg-primary transition-all duration-500 ease-out" style={{ width: `${((step + 1) / STEPS.length) * 100}%` }} />
         </div>
       </nav>
 
       {formError && <FormAlert>{formError}</FormAlert>}
 
-      <section className="space-y-5 rounded-xl border border-border bg-card p-4 sm:p-6" aria-labelledby="step-title">
+      <section key={step} className="animate-fade-up space-y-5 rounded-xl border border-border bg-card p-4 sm:p-6 [animation-duration:0.35s]" aria-labelledby="step-title">
         <h2 id="step-title" className="text-lg font-bold">
           Step {step + 1}: {STEPS[step]!.title}
         </h2>
@@ -338,8 +338,7 @@ export function ListingForm({
           <ChevronLeft className="rtl-flip size-4" aria-hidden="true" /> Back
         </Button>
         {last ? (
-          <Button type="submit" size="lg" disabled={pending}>
-            {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
+          <Button type="submit" size="lg" loading={pending} loadingText={mode === "create" ? "Submitting..." : "Saving..."}>
             {mode === "create" ? "Submit for review" : "Save changes"}
           </Button>
         ) : (

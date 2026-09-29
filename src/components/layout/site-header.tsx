@@ -7,9 +7,9 @@ import { MobileNav } from "./mobile-nav";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={className ?? "flex items-center gap-2 text-lg font-extrabold tracking-tight"} aria-label={`${SITE.name} home`}>
+    <Link href="/" className={className ?? "group/logo flex items-center gap-2 text-lg font-extrabold tracking-tight"} aria-label={`${SITE.name} home`}>
       <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <Home className="size-[18px]" aria-hidden="true" />
+        <Home className="size-[18px] transition-transform duration-300 group-hover/logo:-rotate-6 group-hover/logo:scale-110" aria-hidden="true" />
       </span>
       <span>
         Pakistan <span className="text-primary">Rents</span>
@@ -18,12 +18,12 @@ export function Logo({ className }: { className?: string }) {
   );
 }
 
-const linkCls = "rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground";
+const linkCls = "relative rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100";
 
 /** Static links only (no session read) so public pages stay statically cacheable; /login redirects signed-in owners to the dashboard. */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+    <header className="site-header sticky top-0 z-40 border-b transition-shadow duration-300 border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo />
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">

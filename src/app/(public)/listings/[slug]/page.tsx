@@ -155,13 +155,13 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* Sticky contact bar on mobile */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
+      <div className="animate-sheet-up fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
         <div className="mx-auto flex max-w-xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <p className="truncate text-lg font-extrabold text-primary">{formatPKR(l.rentPerMonth)}</p>
             <p className="truncate font-mono text-xs text-muted-foreground">{l.publicId}</p>
           </div>
-          <WhatsAppButton href={wa} publicId={l.publicId} source="sticky" size="lg" label="WhatsApp" />
+          <WhatsAppButton href={wa} publicId={l.publicId} source="sticky" size="lg" label="WhatsApp" className="animate-ring" />
         </div>
       </div>
 

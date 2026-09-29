@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Loader2, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { createDealAction, deleteDealAction, updateDealStatusAction } from "@/actions/admin";
 import { Button } from "@/components/ui/button";
@@ -74,7 +74,7 @@ export function DealForm({ listings }: { listings: { id: string; publicId: strin
         <Textarea id="notes" rows={2} className="min-h-16" {...register("notes")} />
       </Field>
       <div className="sm:col-span-2 lg:col-span-3">
-        <Button type="submit" disabled={pending}>{pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Record deal</Button>
+        <Button type="submit" loading={pending} loadingText="Saving deal...">Record deal</Button>
       </div>
     </form>
   );

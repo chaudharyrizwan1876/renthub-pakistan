@@ -23,7 +23,7 @@ export function MobileNav() {
     };
   }, [open]);
 
-  const item = "flex min-h-12 items-center rounded-lg px-3 text-base font-medium hover:bg-muted";
+  const item = "flex min-h-12 items-center rounded-lg px-3 text-base font-medium transition-colors hover:bg-muted aria-[current=page]:bg-primary-soft aria-[current=page]:text-primary";
   return (
     <div className="md:hidden">
       <button
@@ -32,21 +32,23 @@ export function MobileNav() {
         aria-controls="mobile-menu"
         aria-label={open ? "Close menu" : t("nav.menu")}
         onClick={() => setOpen((o) => !o)}
-        className="inline-flex size-11 items-center justify-center rounded-lg hover:bg-muted"
+        className="inline-flex size-11 items-center justify-center rounded-lg transition-colors hover:bg-muted"
       >
-        {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
+        <span key={open ? "x" : "menu"} className="animate-pop-in">
+          {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
+        </span>
       </button>
       {open && (
-        <nav id="mobile-menu" aria-label="Mobile" className="fixed inset-x-0 top-16 z-40 h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background p-4">
-          <ul className="space-y-1">
-            <li><Link href="/" className={item}>{t("nav.home")}</Link></li>
-            <li><Link href="/listings" className={item}>{t("nav.listings")}</Link></li>
-            <li><Link href="/blog" className={item}>{t("nav.blog")}</Link></li>
-            <li><Link href="/about" className={item}>{t("nav.about")}</Link></li>
-            <li><Link href="/contact" className={item}>{t("nav.contact")}</Link></li>
-            <li><Link href="/login" className={item}>{t("nav.login")}</Link></li>
+        <nav id="mobile-menu" aria-label="Mobile" className="animate-sheet-down fixed inset-x-0 top-16 z-40 h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background p-4">
+          <ul className="stagger space-y-1">
+            <li><Link href="/" className={item} aria-current={pathname === "/" ? "page" : undefined}>{t("nav.home")}</Link></li>
+            <li><Link href="/listings" className={item} aria-current={pathname === "/listings" ? "page" : undefined}>{t("nav.listings")}</Link></li>
+            <li><Link href="/blog" className={item} aria-current={pathname === "/blog" ? "page" : undefined}>{t("nav.blog")}</Link></li>
+            <li><Link href="/about" className={item} aria-current={pathname === "/about" ? "page" : undefined}>{t("nav.about")}</Link></li>
+            <li><Link href="/contact" className={item} aria-current={pathname === "/contact" ? "page" : undefined}>{t("nav.contact")}</Link></li>
+            <li><Link href="/login" className={item} aria-current={pathname === "/login" ? "page" : undefined}>{t("nav.login")}</Link></li>
           </ul>
-          <div className="mt-4 space-y-3">
+          <div className="stagger mt-4 space-y-3">
             <Link href="/signup" className="flex min-h-12 items-center justify-center rounded-lg bg-primary px-4 font-semibold text-primary-foreground">
               {t("nav.addListing")}
             </Link>

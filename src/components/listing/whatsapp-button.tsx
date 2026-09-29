@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { useLang } from "@/components/i18n/lang-provider";
@@ -25,8 +26,11 @@ interface Props {
 export function WhatsAppButton({ href, publicId, source, label, className, size = "default" }: Props) {
   const { t } = useLang();
   const text = label ?? t("card.whatsapp");
+  const [opening, setOpening] = useState(false);
 
   function logClick() {
+    setOpening(true);
+    setTimeout(() => setOpening(false), 2200);
     try {
       void fetch("/api/inquiry", {
         method: "POST",
@@ -45,11 +49,11 @@ export function WhatsAppButton({ href, publicId, source, label, className, size 
       target="_blank"
       rel="noopener noreferrer"
       onClick={logClick}
-      className={cn(buttonVariants({ variant: "whatsapp", size }), className)}
+      className={cn(buttonVariants({ variant: "whatsapp", size }), "group/wa", className)}
       aria-label={`${text}, Listing ${publicId}`}
     >
-      <WhatsAppIcon />
-      <span>{text}</span>
+      <WhatsAppIcon className={opening ? "animate-bounce" : "transition-transform group-hover/wa:scale-110"} />
+      <span key={opening ? "o" : "t"} className="animate-fade-in">{opening ? "Opening WhatsApp..." : text}</span>
     </a>
   );
 }

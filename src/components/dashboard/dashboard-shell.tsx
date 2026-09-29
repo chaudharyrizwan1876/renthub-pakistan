@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { logoutAction } from "@/actions/auth";
 import { Logo } from "@/components/layout/site-header";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
+
+/** Root section pages (Overview / My listings) only highlight on an exact match; every other item also covers its own sub-pages (e.g. /admin/listings/[id]/edit). */
+function isNavActive(href: string, pathname: string): boolean {
+  if (href === "/admin" || href === "/dashboard") return pathname === href;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export interface NavItem {
   href: string;
@@ -29,7 +38,9 @@ export function DashboardShell({
   children: React.ReactNode;
   wide?: boolean;
 }) {
-  const link = "flex min-h-11 shrink-0 items-center gap-2.5 rounded-lg px-3 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground";
+  const pathname = usePathname();
+  const link = "flex min-h-11 shrink-0 items-center gap-2.5 rounded-lg border-s-2 border-transparent px-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground";
+  const linkActive = "border-primary bg-primary-soft font-semibold text-primary hover:bg-primary-soft hover:text-primary";
   return (
     <div className="min-h-dvh bg-muted/30">
       <header className="sticky top-0 z-40 border-b border-border bg-background">
@@ -55,11 +66,17 @@ export function DashboardShell({
       <div className={cn("mx-auto flex flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:gap-6 md:py-6", wide ? "max-w-[1500px]" : "max-w-7xl")}>
         <nav aria-label={`${title} navigation`} className="md:sticky md:top-20 md:h-fit md:w-56 md:shrink-0">
           <ul className="no-scrollbar flex gap-1 overflow-x-auto md:flex-col">
-            {nav.map((n) => (
-              <li key={n.href}>
-                <Link href={n.href} className={link}>{n.icon}{n.label}</Link>
-              </li>
-            ))}
+            {nav.map((n) => {
+              const active = isNavActive(n.href, pathname);
+              return (
+                <li key={n.href}>
+                  <Link href={n.href} aria-current={active ? "page" : undefined} className={cn(link, active && linkActive)}>
+                    {n.icon}
+                    {n.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <main id="main" className="min-w-0 flex-1">{children}</main>

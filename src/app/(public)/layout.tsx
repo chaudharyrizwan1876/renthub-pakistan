@@ -1,4 +1,5 @@
 import { SiteFooter } from "@/components/layout/site-footer";
+import { ScrollEffects } from "@/components/layout/scroll-effects";
 import { SiteHeader } from "@/components/layout/site-header";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -9,6 +10,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         {children}
       </main>
       <SiteFooter />
+      <ScrollEffects />
     </>
   );
 }

@@ -166,10 +166,10 @@ export default async function HomePage() {
         <h2 id="faq-h" className="text-center text-2xl font-bold"><T k="section.faq" /></h2>
         <div className="mt-6 divide-y divide-border rounded-xl border border-border bg-card">
           {HOME_FAQS.map((f) => (
-            <details key={f.q} className="group px-5 py-4">
+            <details key={f.q} className="accordion group px-5 py-4">
               <summary className="flex min-h-8 cursor-pointer list-none items-center justify-between gap-4 font-semibold marker:hidden">
                 {f.q}
-                <span aria-hidden="true" className="text-xl text-muted-foreground transition-transform group-open:rotate-45">+</span>
+                <span aria-hidden="true" className="text-xl text-muted-foreground transition-transform duration-300 group-open:rotate-45 group-open:text-primary">+</span>
               </summary>
               <p className="mt-3 text-muted-foreground">{f.a}</p>
             </details>

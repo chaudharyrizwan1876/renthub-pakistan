@@ -124,8 +124,8 @@ export function PostForm({ id, defaults }: { id: string | null; defaults: PostFo
 
       <div className="flex flex-wrap gap-3">
         <Button type="button" variant="outline" size="lg" disabled={pending} onClick={save(false)}>Save as draft</Button>
-        <Button type="button" size="lg" disabled={pending} onClick={save(true)}>
-          {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Publish
+        <Button type="button" size="lg" loading={pending} loadingText="Saving..." onClick={save(true)}>
+          Publish
         </Button>
       </div>
     </form>

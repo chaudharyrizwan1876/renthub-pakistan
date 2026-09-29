@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Eye, Loader2, Pencil, RotateCcw, Trash2, CheckCircle2 } from "lucide-react";
+import { Eye, Pencil, RotateCcw, Trash2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { deleteListingAction, ownerSetStatusAction } from "@/actions/listings";
 import { Button } from "@/components/ui/button";
@@ -60,8 +60,8 @@ export function OwnerListingActions({ id, slug, publicId, status }: { id: string
           </DialogDescription>
           <div className="mt-5 flex justify-end gap-2">
             <DialogClose asChild><Button variant="outline">Cancel</Button></DialogClose>
-            <Button variant="destructive" disabled={pending} onClick={() => run(() => deleteListingAction(id), "Listing deleted")}>
-              {pending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}Delete
+            <Button variant="destructive" loading={pending} loadingText="Deleting..." onClick={() => run(() => deleteListingAction(id), "Listing deleted")}>
+              Delete
             </Button>
           </div>
         </DialogContent>

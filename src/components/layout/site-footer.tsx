@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ShieldCheck } from "lucide-react";
 import { CITIES, PROPERTY_TYPES } from "@/lib/constants";
 import { SITE } from "@/lib/site";
 import { slugify } from "@/lib/utils";
@@ -52,8 +53,17 @@ export function SiteFooter() {
           </ul>
         </nav>
       </div>
-      <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
+      <div className="relative border-t border-border py-4 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        {/* Goes straight to the admin dashboard if already signed in as admin, otherwise to the admin login. */}
+        <Link
+          href="/admin"
+          aria-label="Admin"
+          title="Admin"
+          className="absolute end-4 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-muted-foreground/50 transition-colors hover:text-primary"
+        >
+          <ShieldCheck className="size-4" aria-hidden="true" />
+        </Link>
       </div>
     </footer>
   );
