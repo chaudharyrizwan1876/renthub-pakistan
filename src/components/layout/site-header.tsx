@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Home } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { LanguageToggle, T } from "@/components/i18n/lang-provider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -8,9 +8,14 @@ import { MobileNav } from "./mobile-nav";
 export function Logo({ className }: { className?: string }) {
   return (
     <Link href="/" className={className ?? "group/logo flex items-center gap-2 text-lg font-extrabold tracking-tight"} aria-label={`${SITE.name} home`}>
-      <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <Home className="size-[18px] transition-transform duration-300 group-hover/logo:-rotate-6 group-hover/logo:scale-110" aria-hidden="true" />
-      </span>
+      <Image
+        src="/logo.png"
+        alt=""
+        width={32}
+        height={32}
+        priority
+        className="size-8 shrink-0 rounded-lg object-contain transition-transform duration-300 group-hover/logo:scale-110"
+      />
       <span>
         Pakistan <span className="text-primary">Rents</span>
       </span>

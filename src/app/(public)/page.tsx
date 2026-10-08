@@ -33,8 +33,8 @@ const HOW_ICONS = [Search, MessageCircle, Handshake];
 /** Put your 5 hero images at public/hero/1.jpg .. 5.jpg (see the "Hero slider images" guide). */
 const HERO_SLIDES: HeroSlide[] = [
   { src: "/hero/1.jpg", alt: "Modern living room in a rental flat" },
-  { src: "/hero/2.jpg", alt: "Bright bedroom in a rented apartment" },
-  { src: "/hero/3.jpg", alt: "House exterior with a lawn" },
+  { src: "/hero/2.png", alt: "Bright bedroom in a rented apartment" },
+  { src: "/hero/3.png", alt: "House exterior with a lawn" },
   { src: "/hero/4.jpg", alt: "Contemporary kitchen in a rental home" },
   { src: "/hero/5.jpg", alt: "City skyline view from an apartment" },
 ];

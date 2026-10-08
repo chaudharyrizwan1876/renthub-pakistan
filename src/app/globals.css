@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+/* Tailwind's preflight resets native <button>/<select> cursor to "default". Restore the
+   pointer everywhere a button, dropdown or custom [role=button] is actually clickable. */
+@layer base {
+  button:not(:disabled),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  select:not(:disabled),
+  summary,
+  label:has(> input[type="checkbox"]),
+  label:has(> input[type="radio"]),
+  [role="button"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [type="button"]:disabled,
+  [type="submit"]:disabled,
+  [type="reset"]:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+}
+
 :root {
   --background: #fafaf9;
   --foreground: #1c1917;
