@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", siteName: SITE.name, locale: "en_PK", url: SITE.url },
   twitter: { card: "summary_large_image" },
   formatDetection: { telephone: false },
+  verification: { google: "JyjGQiul5HoenA22vm52zQStZ_Q2bcymMmqhpHqWKoY" },
 };
 
 export const viewport: Viewport = {
