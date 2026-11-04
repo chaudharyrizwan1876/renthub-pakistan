@@ -48,7 +48,7 @@ Everything marked ✅ was verified on this codebase (production build, local Pos
 | ✅ | Mobile-first: sticky WhatsApp bar on listing pages, CSS-only filter drawer, swipeable scroll-snap gallery + lightbox, tables collapse to cards |
 | ✅ | Skeleton loaders, empty states, error boundary, 404 page, toasts, inline field errors (`aria-invalid`/`aria-describedby`/`role=alert`) |
 | ✅ | Accessible: skip link, landmarks, keyboard-operable gallery/menus/forms, visible focus, ≥44px touch targets, reduced-motion respected, AA colour contrast (light + dark) |
-| ✅ | Contact button on **every** card and detail page → `wa.me/923295780676?text=…` with the required message; click logged as an Inquiry |
+| ✅ | Contact button on **every** card and detail page → `wa.me/923158090279?text=…` with the required message; click logged as an Inquiry |
 
 ## Functional walkthrough (done end-to-end in a browser)
 Owner login → 6-step Add Listing (validation blocked a phone number in the title, blocked submit with no photo, uploaded 3 large images) → `RH-10015` created as PENDING → admin login → global ID search → admin sees private address/phone with Call/WhatsApp buttons → Approve → public page live, with no private data.

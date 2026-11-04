@@ -76,7 +76,7 @@ describe("public listing DTO", () => {
       expect(wa).not.toContain(s);
     }
     expect(wa).toContain("RH-10245");
-    expect(wa).toContain("https://wa.me/923295780676?text=");
+    expect(wa).toContain("https://wa.me/923158090279?text=");
     expect(ld).toContain("I-8");
   });
 });

@@ -34,7 +34,7 @@ async function main() {
   const publicText = new Set(rows.flatMap((l) => [l.area, l.city, l.title].map((v) => v.toLowerCase())));
   for (const s of [...secrets]) if (publicText.has(s.toLowerCase())) secrets.delete(s);
   // Phones are also allowed in the admin WhatsApp number - never treat the platform number as a secret
-  secrets.delete(process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "923295780676");
+  secrets.delete(process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || "923158090279");
 
   const pages = new Set<string>(["/", "/listings", "/listings?page=2", "/about", "/contact", "/sitemap.xml", "/robots.txt", "/rent/islamabad", "/rent/lahore/flats"]);
   for (const l of rows) {
